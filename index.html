@@ -24,6 +24,7 @@
                 position: fixed;
                 top: 250px;
                 left: 0;
+                z-index: 100;
             }
 
             .center-text-2 {
@@ -36,6 +37,22 @@
                 position: fixed;
                 top: 370px;
                 left: 0;
+                z-index: 100;
+            }
+
+            .chart-container {
+                background: white;
+                padding: 10px;
+                width: 480px;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+
+            .chart-1 {
+                position: fixed;
+                top: -80px;
+                left: -20px;
+                z-index: 0;
+                transform: rotate(-10deg)
             }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,8 +65,8 @@
             <div class="center-text">Interactive</div>
             <div class="center-text-2">Charts</div>
 
-            <div class="chart-1">
-                <svg class="chart-1-svg" width="640" height="480" viewBox="0 0 640 480" ></svg>
+            <div class="chart-container chart-1">
+                <svg class="chart-1-svg" width="480" height="360" viewBox="0 0 640 480" ></svg>
             </div> 
 
         </div>
@@ -107,11 +124,6 @@
             chart.append('g')
                 .attr('transform', `translate(0, ${height - yPadding})`)
                 .call(d3.axisBottom(xScale));
-            chart.append('g')
-                .call(d3.axisLeft()
-                    .scale(yScale)
-                    .tickSize(-width, 0, 0)
-                    .tickFormat(''));
             chart.selectAll()
                 .data(data)
                 .enter()
