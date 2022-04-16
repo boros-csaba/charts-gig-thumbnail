@@ -107,7 +107,11 @@
             chart.append('g')
                 .attr('transform', `translate(0, ${height-yPadding})`)
                 .call(d3.axisBottom(xScale));
-
+            chart.append('g')
+                .call(d3.axisLeft()
+                    .scale(yScale)
+                    .tickSize(-width, 0, 0)
+                    .tickFormat(''));
         </script>
     </body>
 </html>
