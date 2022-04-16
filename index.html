@@ -26,6 +26,14 @@
                 top: 250px;
                 left: 0;
                 z-index: 100;
+                text-shadow: 
+                    1px 0px 1px #ccc, 0px 1px 1px #eee, 
+                    2px 1px 1px #ccc, 1px 2px 1px #eee,
+                    3px 2px 1px #ccc, 2px 3px 1px #eee,
+                    4px 3px 1px #ccc, 3px 4px 1px #eee,
+                    5px 4px 1px #ccc, 4px 5px 1px #eee,
+                    6px 5px 1px #ccc, 5px 6px 1px #eee,
+                    7px 6px 1px #ccc;
             }
 
             .center-text-2 {
@@ -39,6 +47,24 @@
                 top: 370px;
                 left: 0;
                 z-index: 100;
+                color: #fbc02d;
+                text-shadow:
+                    0 1px 0px #378ab4,
+                    1px 0 0px #5dabcd,
+                    1px 2px 1px #378ab4,
+                    2px 1px 1px #5dabcd,
+                    2px 3px 2px #378ab4,
+                    3px 2px 2px #5dabcd,
+                    3px 4px 2px #378ab4,
+                    4px 3px 3px #5dabcd,
+                    4px 5px 3px #378ab4,
+                    5px 4px 2px #5dabcd,
+                    5px 6px 2px #378ab4,
+                    6px 5px 2px #5dabcd,
+                    6px 7px 1px #378ab4,
+                    7px 6px 1px #5dabcd,
+                    7px 8px 0px #378ab4,
+                    8px 7px 0px #5dabcd;
             }
 
             .chart-container {
@@ -62,7 +88,42 @@
                 top: 450px;
                 left: 900px;
                 z-index: 0;
-                transform: rotate(15deg)
+                transform: rotate(15deg);
+                display: flex;
+                padding: 30px 0 30px 30px;
+            }
+
+            .pie-chart-label-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .pie-chart-label {
+                font-family: 'Roboto', sans-serif;
+                display: flex;
+                align-items: center;
+                margin: 5px 20px;
+            }
+            
+            .pie-chart-label::before {
+                content: "\2022";
+                font-size: 48px;
+                height: 20px;
+                display: inline-block;
+                margin: -34px 5px 5px 5px;
+            }
+
+            .pie-chart-label-1::before {
+                color: #8bc34a;
+            }
+
+            .pie-chart-label-2::before {
+                color: #03a9f4;
+            }
+
+            .pie-chart-label-3::before {
+                color: #fbc02d;
             }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,7 +141,12 @@
             </div> 
 
             <div class="chart-container chart-2">
-                <svg class="chart-2-svg" width="480" height="360" viewBox="0 0 640 480" ></svg>
+                <svg class="chart-2-svg" width="240" height="240" viewBox="0 0 480 480" ></svg>
+                <div class="pie-chart-label-container">
+                    <div class="pie-chart-label pie-chart-label-1">Interest earned</div>
+                    <div class="pie-chart-label pie-chart-label-2">Initial amount</div>
+                    <div class="pie-chart-label pie-chart-label-3">Additional contributions</div>
+                </div>
             </div>
 
         </div>
@@ -170,7 +236,7 @@
             
             svg = d3.select('.chart-2-svg');
             chart = svg.append('g')
-                .attr('transform', `translate(${width/2}, ${height/2})`);
+                .attr('transform', `translate(${height/2}, ${height/2})`);
             const pieData = [data[0].value1, data[0].value2, data[0].value3];
             const scale = d3.scaleOrdinal()
                 .domain(pieData)
